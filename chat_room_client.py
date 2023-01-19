@@ -39,8 +39,7 @@ def login():
         print("success")
     else : 
         print("error")    
-login_thread = threading.Thread(target=login)
-login_thread.run()
+
 
 recieve_thread = threading.Thread(target=recieve)
 recieve_thread.start()

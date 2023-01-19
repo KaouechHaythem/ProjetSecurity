@@ -1,13 +1,13 @@
 import ldap
  
 if __name__ == "__main__":
-  	ldap_server="x.x.x.x"
-	username = "someuser"
-	password= "somepassword"
+  	ldap_server="127.0.0.1"
+	username = "haythem"
+	password= "haythem"
 	# the following is the user_dn format provided by the ldap server
 	user_dn = "uid="+username+",ou=someou,dc=somedc,dc=local"
-	# adjust this to your base dn for searching
-	base_dn = "dc=somedc,dc=local"
+	
+	base_dn = "dc=insat,dc=local"
 	connect = ldap.open(ldap_server)
 	search_filter = "uid="+username
 	try:

@@ -1,0 +1,24 @@
+from cryptography import x509
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.x509.oid import NameOID
+from cryptography.hazmat.primitives.serialization import Encoding
+from cryptography.hazmat.primitives.serialization import PrivateFormat
+from cryptography.hazmat.primitives.serialization import NoEncryption
+from keygen import private_key
+def sign_request(client):
+    builder=x509.CertificateSigningRequestBuilder()
+    builder=builder.subject_name(x509.name([
+        x509.NameAttribute(NameOID.COMMON_NAME, u'USER : client'),
+        x509.NameAttribute(NameOID.COUNTRY_NAME, u'TN'),
+        x509.NameAttribute(NameOID.STATE_OR_PROVINCE_NAME, u'Tunis'),
+        x509.NameAttribute(NameOID.LOCALITY_NAME, u'Tunis'),
+    ]))
+    builder=builder.add_extension((ca==False,path_length==None), critical=True)
+    request = builder.sign(private_key, hashes.SHA256(),default_backend())
+
+    with open("certif.csr","wb") as f :
+        f.write(request.public_bytes(Encoding.PEM))
+    with open("key.key","wb") as f :
+        f.write(private_key.private_bytes(Encoding.PEM,PrivateFormat.TraditionalOpenSSL,NoEncryption()))
