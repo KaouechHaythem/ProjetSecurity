@@ -8,7 +8,7 @@ from Utilisateur import Utilisateur
 
 class Authentification:
     def __init__(self):
-        self.connection = sqlite3.connect("utilisateurs_bd.db")
+        self.connection = sqlite3.connect("users_db.db")
         self.cursor = self.connection.cursor()
         self.cursor.execute(
             "SELECT name FROM sqlite_master WHERE type='table' AND name='UTILISATEUR';")
